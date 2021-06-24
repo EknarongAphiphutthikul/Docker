@@ -95,4 +95,52 @@
   ```sh
   docker --version
   ```
-  
+- Add Group user
+  ```sh
+  sudo groupadd docker
+
+  sudo usermod -aG docker $USER
+
+  newgrp docker
+  ```
+----
+
+<br/>
+
+## How to Connect to Private Docker Registry   
+> **Note** How to install [private docker registry](https://github.com/EknarongAphiphutthikul/Docker-Registry)   
+
+- If need certificate
+  ```sh
+  copy cert to /usr/local/share/ca-certificates/<domain-name>.crt
+
+  sudo update-ca-certificates
+
+  sudo service docker restart
+  ```
+  ```console
+  akeadm@docker:~$ sudo cp ca-chain.cert.pem /usr/local/share/ca-certificates/registry.ake.com.crt
+  [sudo] password for akeadm:
+  akeadm@docker:~$ ls /usr/local/share/ca-certificates/
+  registry.ake.com.crt
+  akeadm@docker:~$ sudo update-ca-certificates
+  Updating certificates in /etc/ssl/certs...
+  rehash: warning: skipping registry.ake.com.pem,it does not contain exactly one c ertificate or CRL
+  1 added, 0 removed; done.
+  Running hooks in /etc/ca-certificates/update.d...
+  done.
+  akeadm@docker:~$ sudo service docker restart
+  ```
+
+- If need authentication (username, password)
+  ```sh
+  docker login <domain-name>:<port>
+  ```
+  ```console
+  akeadm@docker:~$ docker login registry.ake.com:443
+  Username: registryusr
+  Password:
+
+  Login Succeeded
+  ```
+
