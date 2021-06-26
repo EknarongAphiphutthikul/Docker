@@ -107,6 +107,51 @@
 
 <br/>
 
+## How to install Unix password manager   
+
+- Install Pass
+  ```sh
+  sudo apt-get install pass
+  ```
+- Download and install docker-credential-pass
+  ```sh
+  mkdir ~/Downloads
+
+  cd ~/Downloads/
+
+  # https://github.com/docker/docker-credential-helpers/releases
+  wget https://github.com/docker/docker-credential-helpers/releases/download/v0.6.4/docker-credential-pass-v0.6.4-amd64.tar.gz
+
+  tar -xvf docker-credential-pass-v0.6.4-amd64.tar.gz
+
+  sudo mv docker-credential-pass /usr/bin
+
+  chmod +x /usr/bin/docker-credential-pass
+
+  docker-credential-pass list
+
+  sudo apt-get install rng-tools
+
+  gpg --generate-key
+
+  pass init eknarong.ap@gmail.com
+
+  cat /home/akeadm/.password-store/.gpg-id 
+
+  # Add "credsStore": "pass" to the JSON file.
+  nano ~/.docker/config.json
+
+  docker-credential-pass list
+
+  more ~/.docker/config.json
+  ```
+
+<br/>
+
+----
+
+<br/>
+
 ## How to Connect to Private Docker Registry   
 > **Note** How to install [private docker registry](https://github.com/EknarongAphiphutthikul/Docker-Registry)   
 
